@@ -1,21 +1,22 @@
 import { Navigate } from "react-router-dom";
 
-// Refactored version to handle the "initial load" state
 function ProtectedRoute({ user, isLoading, children, adminOnly = false }) {
-  // 1. Wait until the session check is finished
+  // Show loader while session is being verified
   if (isLoading) {
     return <div className="loader">Verifying session...</div>;
   }
 
-  // 2. If not logged in after check, go to login
+  // Redirect if not logged in
   if (!user) {
     return <Navigate to="/login" replace />;
   }
 
-  // 3. Admin check
+  // Redirect if not admin and adminOnly
   if (adminOnly && user.role?.name !== "Admin") {
     return <Navigate to="/" replace />;
   }
 
   return children;
 }
+
+export default ProtectedRoute;
