@@ -1,7 +1,7 @@
 // frontend/src/components/HouseGalleryWithRating.jsx
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import SearchFilters from './SearchFilters'; // Import the new component
+import SearchFilter from './SearchFilter'; // Import the new component
 
 function HouseGalleryWithRating() {
   const [houses, setHouses] = useState([]);

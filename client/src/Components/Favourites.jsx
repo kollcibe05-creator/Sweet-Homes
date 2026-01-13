@@ -1,22 +1,27 @@
-function Favorites() {
+import React, { useState, useEffect } from "react";
+
+export default function Favorites() {
     const [favorites, setFavorites] = useState([]);
 
     useEffect(() => {
         fetch("/favorites")
             .then((r) => r.json())
-            .then(setFavorites);
+            .then(setFavorites)
+            .catch((err) => console.error("Failed to fetch favorites:", err));
     }, []);
 
     const removeFavorite = (favId) => {
-        // We use the house_id logic from your backend resource
         const favToRemove = favorites.find(f => f.id === favId);
+
+        if (!favToRemove) return;
+
         fetch("/favorites", {
-            method: "POST", // Your backend uses POST to toggle
+            method: "POST", // backend uses POST to toggle
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ house_id: favToRemove.house_id })
         }).then(() => {
             setFavorites(favorites.filter(f => f.id !== favId));
-        });
+        }).catch((err) => console.error("Failed to remove favorite:", err));
     };
 
     return (
@@ -27,7 +32,7 @@ function Favorites() {
             ) : (
                 <div className="house-grid">
                     {favorites.map((fav) => (
-                        <div key={fav.id} className="house-card">
+                        <div key={fav.id} className="house-card" style={{ position: 'relative' }}>
                             <button 
                                 className="remove-btn" 
                                 onClick={() => removeFavorite(fav.id)}

@@ -19,3 +19,6 @@ function ProtectedRoute({ user, isLoading, children, adminOnly = false }) {
 
   return children;
 }
+
+//  Export as default so App.jsx import works
+export default ProtectedRoute;
