@@ -8,9 +8,9 @@ import HouseDetail from "./Components/HouseDetail";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import AdminDashboard from "./Components/AdminDashboard";
-import MyBookings from "./Components/BookingForm";       // Ensure BookingForm.jsx default exports MyBookings
-import Favourites from "./Components/Favourites";       // Ensure Favourites.jsx default exports Favourites
-import ProtectedRoute from "./Components/ProtectedRoute"; // Ensure default export
+import MyBookings from "./Components/BookingForm";       // Make sure BookingForm.jsx default exports MyBookings
+import Favourites from "./Components/Favourites";       // Match the file name exactly (British spelling)
+import ProtectedRoute from "./Components/ProtectedRoute"; // Make sure default export
 
 function App() {
   const [user, setUser] = useState(null);
@@ -46,7 +46,7 @@ function App() {
           <Route
             path="/my-bookings"
             element={
-              <ProtectedRoute user={user}>
+              <ProtectedRoute user={user} isLoading={isLoading}>
                 <MyBookings user={user} />
               </ProtectedRoute>
             }
@@ -54,7 +54,7 @@ function App() {
           <Route
             path="/favorites"
             element={
-              <ProtectedRoute user={user}>
+              <ProtectedRoute user={user} isLoading={isLoading}>
                 <Favourites user={user} />
               </ProtectedRoute>
             }
@@ -64,7 +64,7 @@ function App() {
           <Route
             path="/admin"
             element={
-              <ProtectedRoute user={user} adminOnly={true}>
+              <ProtectedRoute user={user} adminOnly={true} isLoading={isLoading}>
                 <AdminDashboard user={user} />
               </ProtectedRoute>
             }

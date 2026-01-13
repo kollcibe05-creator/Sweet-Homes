@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function SearchFilters({ onFilterChange }) {
+function SearchFilter({ onFilterChange }) {
   const [filters, setFilters] = useState({
     location: '',
     house_type: '',
@@ -85,4 +85,4 @@ function SearchFilters({ onFilterChange }) {
   );
 }
 
-export default SearchFilters;
+export default SearchFilter;
