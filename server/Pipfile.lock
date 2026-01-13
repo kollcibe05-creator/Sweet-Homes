@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "c2cd7fa75784ab88c16e5a017f1a3cdfd4ffcf920516e9db075fbbb42e0e047a"
+            "sha256": "5f4647325af59ae7a1aa3b7e9603f35d1c5730491a547ae36e3ef99d6b659c22"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -221,6 +221,14 @@
             ],
             "markers": "platform_machine == 'aarch64' or (platform_machine == 'ppc64le' or (platform_machine == 'x86_64' or (platform_machine == 'amd64' or (platform_machine == 'AMD64' or (platform_machine == 'win32' or platform_machine == 'WIN32')))))",
             "version": "==3.3.0"
+        },
+        "honcho": {
+            "hashes": [
+                "sha256:56dcd04fc72d362a4befb9303b1a1a812cba5da283526fbc6509be122918ddf3",
+                "sha256:af3815c03c634bf67d50f114253ea9fef72ecff26e4fd06b29234789ac5b8b2e"
+            ],
+            "index": "pypi",
+            "version": "==2.0.0"
         },
         "itsdangerous": {
             "hashes": [
