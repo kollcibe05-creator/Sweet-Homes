@@ -4,9 +4,6 @@ from config import app, db, api
 from models import User, House, Booking, Review, Favorite
 from functools import wraps
 
-# -------------------------------------------------
-# ADMIN DECORATOR
-# -------------------------------------------------
 def admin_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -22,9 +19,6 @@ def admin_required(f):
     return decorated_function
 
 
-# -------------------------------------------------
-# AUTHENTICATION
-# -------------------------------------------------
 class Signup(Resource):
     def post(self):
         data = request.get_json()
@@ -33,7 +27,7 @@ class Signup(Resource):
             new_user = User(
                 username=data.get('username'),
                 email=data.get('email'),
-                role_id=2  # Default role: User
+                role_id=2  
             )
             new_user.password_hash = data.get('password')
 
@@ -74,9 +68,6 @@ class CheckSession(Resource):
         return {"error": "Not logged in"}, 401
 
 
-# -------------------------------------------------
-# HOUSES (SEARCH + ADMIN CREATE)
-# -------------------------------------------------
 class HouseList(Resource):
     def get(self):
         location = request.args.get('location')
@@ -136,9 +127,7 @@ class HouseByID(Resource):
         return {}, 204
 
 
-# -------------------------------------------------
-# BOOKINGS
-# -------------------------------------------------
+
 class BookingList(Resource):
     def post(self):
         user_id = session.get('user_id')
@@ -184,9 +173,7 @@ class UserBookings(Resource):
         return [b.to_dict() for b in user.bookings], 200
 
 
-# -------------------------------------------------
-# FAVORITES
-# -------------------------------------------------
+
 class FavoriteResource(Resource):
     def post(self):
         user_id = session.get('user_id')
@@ -215,9 +202,7 @@ class FavoriteResource(Resource):
         return favorite.to_dict(), 201
 
 
-# -------------------------------------------------
-# REVIEWS
-# -------------------------------------------------
+
 class ReviewResource(Resource):
     def post(self):
         user_id = session.get('user_id')
@@ -238,9 +223,7 @@ class ReviewResource(Resource):
         return review.to_dict(), 201
 
 
-# -------------------------------------------------
-# ADMIN USERS
-# -------------------------------------------------
+
 class UserList(Resource):
     @admin_required
     def get(self):
@@ -248,9 +231,7 @@ class UserList(Resource):
         return [u.to_dict() for u in users], 200
 
 
-# -------------------------------------------------
-# ROUTES
-# -------------------------------------------------
+
 api.add_resource(Signup, '/signup')
 api.add_resource(Login, '/login')
 api.add_resource(Logout, '/logout')
@@ -269,8 +250,6 @@ api.add_resource(ReviewResource, '/reviews')
 api.add_resource(UserList, '/users')
 
 
-# -------------------------------------------------
-# RUN
-# -------------------------------------------------
+
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
