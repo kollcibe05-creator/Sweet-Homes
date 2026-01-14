@@ -1,115 +1,132 @@
-from config import app, db
-from models import User, Role, House, Review, Booking
 from faker import Faker
-import random
-from datetime import datetime, timedelta
+from random import randint, choice, sample
+from datetime import timedelta
+
+from config import app, db
+from models import User, Role, House, Booking, Review, Favorite
 
 fake = Faker()
 
-with app.app_context():
+def seed_data():
+    with app.app_context():
 
-    print("🧹 Clearing database...")
-    Booking.query.delete()
-    Review.query.delete()
-    House.query.delete()
-    User.query.delete()
-    Role.query.delete()
-    db.session.commit()
+        print(" Clearing existing data...")
+        Favorite.query.delete()
+        Review.query.delete()
+        Booking.query.delete()
+        House.query.delete()
+        User.query.delete()
+        Role.query.delete()
+        db.session.commit()
 
-    # --------------------
-    # ROLES
-    # --------------------
-    print("👥 Creating roles...")
-    admin_role = Role(name="Admin")
-    user_role = Role(name="User")
-    db.session.add_all([admin_role, user_role])
-    db.session.commit()
+        
+        print(" Seeding roles...")
+        admin_role = Role(name="Admin")
+        user_role = Role(name="User")
+        db.session.add_all([admin_role, user_role])
+        db.session.commit()
 
-    # --------------------
-    # USERS
-    # --------------------
-    print("🙋 Creating users...")
-    users = []
+ 
+        print(" Seeding users...")
 
-    admin = User(
-        username="admin",
-        email="admin@glamjam.com",
-        role=admin_role
-    )
-    admin.password_hash = "admin123"
-    users.append(admin)
-
-    for _ in range(5):
-        user = User(
-            username=fake.user_name(),
-            email=fake.unique.email(),
-            role=user_role
+        admin = User(
+            username="admin",
+            email="admin@airbnbclone.com",
+            role=admin_role
         )
-        user.password_hash = "password123"
-        users.append(user)
+        admin.password_hash = "admin123"
 
-    db.session.add_all(users)
-    db.session.commit()
+        users = [admin]
 
-    # --------------------
-    # HOUSES
-    # --------------------
-    print("🏠 Creating houses...")
-    house_types = ["Villa", "Apartment", "Cottage", "Beach House"]
+        for _ in range(8):
+            user = User(
+                username=fake.unique.user_name(),
+                email=fake.unique.email(),
+                role=user_role
+            )
+            user.password_hash = "password123"
+            users.append(user)
 
-    houses = []
-    for _ in range(8):
-        house = House(
-            location=f"{fake.city()}, Kenya",
-            price_per_night=random.randint(80, 400),
-            house_type=random.choice(house_types),
-            image_url="https://source.unsplash.com/800x600/?house",
-            description=fake.paragraph(nb_sentences=3),
-            average_rating=round(random.uniform(3.5, 5.0), 1)
-        )
-        houses.append(house)
+        db.session.add_all(users)
+        db.session.commit()
 
-    db.session.add_all(houses)
-    db.session.commit()
+       
+        print(" Seeding houses...")
 
-    # --------------------
-    # BOOKINGS
-    # --------------------
-    print("📅 Creating bookings...")
-    bookings = []
+        house_types = ["Villa", "Apartment", "Cottage", "Beach House", "Studio"]
 
-    for _ in range(10):
-        start_date = fake.date_time_between(start_date="-30d", end_date="+10d")
-        end_date = start_date + timedelta(days=random.randint(1, 7))
+        houses = []
+        for _ in range(12):
+            house = House(
+                location=f"{fake.city()}, Kenya",
+                price_per_night=randint(50, 300),
+                house_type=choice(house_types),
+                image_url=fake.image_url(),
+                description=fake.paragraph(nb_sentences=4),
+                average_rating=0.0
+            )
+            houses.append(house)
 
-        booking = Booking(
-            user=random.choice(users),
-            house=random.choice(houses),
-            status=random.choice(["Pending", "Approved", "Denied"]),
-            start_date=start_date,
-            end_date=end_date
-        )
-        bookings.append(booking)
+        db.session.add_all(houses)
+        db.session.commit()
 
-    db.session.add_all(bookings)
-    db.session.commit()
+     
+        print(" Seeding bookings...")
 
-    # --------------------
-    # REVIEWS
-    # --------------------
-    print("⭐ Creating reviews...")
-    reviews = []
+        statuses = ["Pending", "Approved", "Cancelled"]
 
-    for _ in range(12):
-        review = Review(
-            user=random.choice(users),
-            house=random.choice(houses),
-            rating=random.randint(1, 5),
-            comment=fake.sentence(nb_words=12)
-        )
-        reviews.append(review)
+        bookings = []
+        for _ in range(15):
+            start_date = fake.date_time_between(start_date="-30d", end_date="now")
+            booking = Booking(
+                user=choice(users[1:]),
+                house=choice(houses),
+                start_date=start_date,
+                end_date=start_date + timedelta(days=randint(2, 7)),
+                status=choice(statuses)
+            )
+            bookings.append(booking)
 
-    db.session.add_all(reviews)
-    db.session.commit()
+        db.session.add_all(bookings)
+        db.session.commit()
 
-    print("✅ Database seeded successfully 🚀")
+    
+        print(" Seeding reviews...")
+
+        reviews = []
+        for house in houses:
+            house_reviews = sample(users[1:], randint(1, 4))
+            ratings = []
+
+            for user in house_reviews:
+                rating = randint(1, 5)
+                review = Review(
+                    user=user,
+                    house=house,
+                    rating=rating,
+                    comment=fake.sentence()
+                )
+                reviews.append(review)
+                ratings.append(rating)
+
+            house.average_rating = round(sum(ratings) / len(ratings), 1)
+
+        db.session.add_all(reviews)
+        db.session.commit()
+
+      
+        print(" Seeding favorites...")
+
+        favorites = []
+        for user in users[1:]:
+            fav_houses = sample(houses, randint(1, 3))
+            for house in fav_houses:
+                favorites.append(Favorite(user=user, house=house))
+
+        db.session.add_all(favorites)
+        db.session.commit()
+
+        print(" Database seeded successfully with Faker!")
+
+if __name__ == "__main__":
+    seed_data()
