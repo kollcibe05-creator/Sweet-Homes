@@ -2,8 +2,6 @@
 :root {
   --primary: #ff385c;
   --text: #222222;
-  --light-gray: #f7f7f7;
-  --border: #dddddd;
   --success: #2ecc71;
   --warning: #f1c40f;
 }
@@ -30,7 +28,7 @@ body {
   border-bottom: 1px solid var(--border);
   position: sticky; 
   top: 0; 
-  background: white; 
+; 
   z-index: 1000;
 }
 
