@@ -16,7 +16,7 @@ The ideological business requirements are:
 7. A `User` can have many `Booking`s. 
 _______
 The ERD model of the relationships;
-![ERD Model ~ Sweet Homes](./Screenshot%202026-01-16%20013412.pngScreenshot 2026-01-16 013412.png)
+![ERD Model ~ Sweet Homes](erd.png)
 _______
 The models incorporate serialize_rules and association_proxies to limit recursion depth and simplify cross-model data access.
 ____
