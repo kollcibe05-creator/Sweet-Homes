@@ -26,9 +26,9 @@ body {
   align-items: center;
   padding: 15px 80px;
   border-bottom: 1px solid var(--border);
-  position: sticky; 
-  top: 0; 
-; 
+  position: sticky;
+  top: 0;
+  background: white;
   z-index: 1000;
 }
 
