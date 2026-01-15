@@ -37,7 +37,7 @@ function App() {
       })
       .finally(() => setIsLoading(false));
   }, []);
-  if (isLoading){   return <p>Loading...</p>}
+  if (isLoading) return <div className="loader">Loading Sweet Homes...</div>;
   return (
     <div className="App">
       <Navbar user={user} setUser={setUser} />

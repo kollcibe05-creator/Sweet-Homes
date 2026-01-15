@@ -54,8 +54,8 @@ class Login(Resource):
 
 
 class Logout(Resource):
-    def delete(self):
-        session.pop('user_id', None)
+    def delete(self):  # Must match the 'DELETE' method in Navbar.jsx
+        session['user_id'] = None
         return {}, 204
 
 
@@ -85,8 +85,7 @@ class HouseList(Resource):
         houses = query.all()
 
         if min_rating:
-            houses = [h for h in houses if h.average_rating >= float(min_rating)]
-
+            houses = [h for h in houses if (h.average_rating or 0) >= float(min_rating)]  
         return [h.to_dict(rules=('-bookings', '-reviews')) for h in houses], 200
 
     @admin_required
@@ -108,6 +107,10 @@ class HouseList(Resource):
 
 
 class HouseByID(Resource):
+    def get(self, id):
+        house = House.query.get_or_404(id)
+        # Returns the house with its reviews for the Detail page
+        return house.to_dict(), 200
     @admin_required
     def patch(self, id):
         house = House.query.get_or_404(id)
@@ -175,6 +178,13 @@ class UserBookings(Resource):
 
 
 class FavoriteResource(Resource):
+    def get(self):
+        user_id = session.get('user_id')
+        if not user_id:
+            return {"error": "Unauthorized"}, 401
+        user_favorites = Favorite.query.filter_by(user_id=user_id).all()
+        return [f.to_dict() for f in user_favorites], 200
+
     def post(self):
         user_id = session.get('user_id')
         if not user_id:
