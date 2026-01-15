@@ -16,9 +16,13 @@ The ideological business requirements are:
 7. A `User` can have many `Booking`s. 
 _______
 The ERD model of the relationships;
-![ERD Model ~ Sweet Homes](Screenshot 2026-01-16 013412.png)
+![ERD Model ~ Sweet Homes](erd.png)
 _______
 The models incorporate serialize_rules and association_proxies to limit recursion depth and simplify cross-model data access.
+____
+
+THE DEPLOYED LINK 👉[Deployed](https://sweet-homes.onrender.com)
+____
 ## Tech Stack
 - Python
 - SQL
@@ -29,28 +33,52 @@ The models incorporate serialize_rules and association_proxies to limit recursio
 
 ## File Structure
 
-Take a look at the directory structure:
+Take a look at the src directory structure:
 
 ```console
-    .
-├── LICENSE
+.
+├── App.jsx
+├── components
+│   ├── BookingForm.jsx
+│   ├── Navbar.css
+│   ├── Navbar.jsx
+│   ├── ProtectedRoute.jsx
+│   ├── ReviewSection.jsx
+│   └── SearchFilters.jsx
+├── main.jsx
+├── pages
+│   ├── AdminDashboard.jsx
+│   ├── Favorites.jsx
+│   ├── Home.jsx
+│   ├── HouseDetail.jsx
+│   ├── Houses.jsx
+│   ├── Login.jsx
+│   ├── MyBookings.jsx
+│   └── Signup.jsx
+└── styles
+    ├── anotherstyle.css
+    └── main.css
+    
+```
+And the backeng logic:
+
+```console
+.
 ├── Pipfile
 ├── Pipfile.lock
-├── README.md
-├── domain.png
-└── server
-    ├── app.py
-    ├── instance
-    │   └── app.db
-    ├── migrations
-    │   ├── README
-    │   ├── alembic.ini
-    │   ├── env.py
-    │   ├── script.py.mako
-    │   └── versions
-    │       └── 4e55fcdd2cde_initial_migration.py
-    ├── models.py
-    └── seed.py
+├── app.py
+├── config.py
+├── migrations
+│   ├── README
+│   ├── alembic.ini
+│   ├── env.py
+│   ├── script.py.mako
+│   └── versions
+│       └── d63345b06c4e_created_tables_again_for_postgresql.py
+├── models.py
+├── package-lock.json
+└── seed.py
+
 ```
 
 
@@ -103,6 +131,11 @@ Running it requires that you are in the */server* dir;
     cd server
 
 ```
+To set up the frontend dependencies, from the root directory, run:
+
+```console
+$ npm install --prefix client
+```
 
 ## Functionality
 # models.py
@@ -115,32 +148,41 @@ The have similar constructors such as:
 5. @validates : a decorator that ensures that rating is between 1 and 5.
 
 The models are:
-- Guest
-- Appearance ~ The association object.
-- Episode
+-  Role
+-  Booking ~ The association object.
+-  House
+- Review
+- Favorite
+- User
 
 
 # app.py
 The views are Resources from `flask-restful` which ensures they are RESTful registration to routes.
 The basic functionalities that can be ensued are:
-1. (GET)*episodes()*: GET request to */episodes*.
-2. (GET)*get_episodes(id)*: Takes id as an argument and implements GET to the */episodes/:id*.
-3. (GET)*guests()*: GET request to */guests*.
-4. (GET, PATCH)*get_guests(id)*: Takes id as an argument and implements GET and PATCH to the */powers/:id*.
-5. (GET, POST)*post()*: POST to *appearances*. 
+1. (GET)*houses()*: GET request to */houses*.
+2. (GET)*get_houses(id)*: Takes id as an argument and implements GET to the */houses/:id*.
+3. (GET)*users()*: GET request to */users*.
+4. (GET, PATCH)*get_users(id)*: Takes id as an argument and implements GET and PATCH to the */powers/:id*.
+5. (GET, POST)*post()*: POST to *houses*. 
+Those are just but a few of them but you get the point.
 
 # seed.py
 It contains the data seeded to the `app.db`
 
 # app.db
-It holds our SQL database.
+It holds our SQL database. In our case, we use PostgreSQL and therfore the db is stored in the server not in the files.
+# config.py
+It holds our configurations involving our app, DATABASE_URI and many other.
 
 
 
 
 
-# Author
+# Authors
 *Collins Kibet*
+*John Ng'ang'a*
+*Josephine Anyango*
+*Elijah Mwendia*
 
 ## [License](LICENSE)
 
@@ -150,6 +192,8 @@ Copyright (c) 2025 Collins Kibet
 
 # Contact info
 * Email : kollcibe05@gmail.com
-
+* Email : josephine.anyango@student.moringaschool.com
+* Email : elijah.mwendia@student.moringaschool.com
+* Email : john.nganga@student.moringaschool.com
 
 `(**Thank you**)`
