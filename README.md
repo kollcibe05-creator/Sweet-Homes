@@ -131,6 +131,11 @@ Running it requires that you are in the */server* dir;
     cd server
 
 ```
+To set up the frontend dependencies, from the root directory, run:
+
+```console
+$ npm install --prefix client
+```
 
 ## Functionality
 # models.py
@@ -143,25 +148,31 @@ The have similar constructors such as:
 5. @validates : a decorator that ensures that rating is between 1 and 5.
 
 The models are:
-- Guest
-- Appearance ~ The association object.
-- Episode
+-  Role
+-  Booking ~ The association object.
+-  House
+- Review
+- Favorite
+- User
 
 
 # app.py
 The views are Resources from `flask-restful` which ensures they are RESTful registration to routes.
 The basic functionalities that can be ensued are:
-1. (GET)*episodes()*: GET request to */episodes*.
-2. (GET)*get_episodes(id)*: Takes id as an argument and implements GET to the */episodes/:id*.
-3. (GET)*guests()*: GET request to */guests*.
-4. (GET, PATCH)*get_guests(id)*: Takes id as an argument and implements GET and PATCH to the */powers/:id*.
-5. (GET, POST)*post()*: POST to *appearances*. 
+1. (GET)*houses()*: GET request to */houses*.
+2. (GET)*get_houses(id)*: Takes id as an argument and implements GET to the */houses/:id*.
+3. (GET)*users()*: GET request to */users*.
+4. (GET, PATCH)*get_users(id)*: Takes id as an argument and implements GET and PATCH to the */powers/:id*.
+5. (GET, POST)*post()*: POST to *houses*. 
+Those are just but a few of them but you get the point.
 
 # seed.py
 It contains the data seeded to the `app.db`
 
 # app.db
-It holds our SQL database.
+It holds our SQL database. In our case, we use PostgreSQL and therfore the db is stored in the server not in the files.
+# config.py
+It holds our configurations involving our app, DATABASE_URI and many other.
 
 
 
