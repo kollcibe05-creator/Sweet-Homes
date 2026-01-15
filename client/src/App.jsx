@@ -8,13 +8,13 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 // Pages
 import Home from "./pages/Home";
-import Houses from "./components/Houses";
+import Houses from "./pages/Houses";
 import HouseDetail from "./pages/HouseDetail";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Favorites from "./pages/Favorites";
 import MyBookings from "./pages/MyBookings";
-import AdminDashboard from "./pages/AdminDashboard";
+import AdminDashboard from "./pages/AdminDashBoard";
 
 import "./styles/main.css";
 import "./styles/anotherstyle.css";  {/*######need removal testing only*/}
