@@ -1,18 +1,22 @@
-# Late Show
+# Sweet Homes
 
-##### A RESTful API modelled with greatness of its kind!!!
+##### A full-stack web application for managing Airbnb's, featuring a React frontend and a RESTful Flask backend!
 
 ## Description
-Late Show is Flask-SQLAlchemy + SQL  RESTful API aimed at resolving the complexity of organizing movies' data with consistency and persisting the changes to the Database. It implements flask-sqlalchemy, SQL, API best practices using flask-restful and OOP to model the database and ensure accuracy while accessing the data
+Sweet Homes is Flask-SQLAlchemy + PostgreSQL + React software aimed at resolving the complexity of making reservations while maintainig  data consistency and persisting the changes to the Database. It implements flask-sqlalchemy, relational databases, API best practices using flask-restful and OOP to model the database and ensure accuracy while accessing the data.
 
 The ideological business requirements are:
 
-1. An Episode has many  `Guest`s through the  `Appearance`.
-2. An Guest has many `Episode`s through `Appearance`.
-3. An `Appearance` belongs to a `Episode` and belongs to a  `Guest`
+1. A `User `has many  `Roles`s but generally restricted to some via authorization.
+2. A `User` can have  many `Houses`s through `Bookings`.
+3. An `User` can have many `review`.
+4. A `house` can have many `reviews`.
+5. A `User` can have many `favorites`.
+6. A `House` can only have *one* `Booking`.
+7. A `User` can have many `Booking`s. 
 _______
 The ERD model of the relationships;
-![alt text](/domain.png)
+![alt text](https://dbdiagram.io/d/6964500ed6e030a024b68fca)
 _______
 The models incorporate serialize_rules and association_proxies to limit recursion depth and simplify cross-model data access.
 ## Tech Stack
