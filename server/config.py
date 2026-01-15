@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate
@@ -8,7 +10,7 @@ from sqlalchemy import MetaData
 
 app = Flask(__name__)
 app.secret_key = b'\xfew6MO\xd3\xd0\xa5xft\x0f&\x18\\j'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URI")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
 
