@@ -1,4 +1,3 @@
-// src/App.jsx
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
@@ -8,7 +7,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 // Pages
 import Home from "./pages/Home";
-import Houses from "./components/Houses";
+import Houses from "./pages/Houses";
 import HouseDetail from "./pages/HouseDetail";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -16,16 +15,18 @@ import Favorites from "./pages/Favorites";
 import MyBookings from "./pages/MyBookings";
 import AdminDashboard from "./pages/AdminDashboard";
 
-import "./styles/main.css";
-import "./styles/anotherstyle.css";  {/*######need removal testing only*/}
+// import "./styles/main.css";
+// import "./styles/anotherstyle.css";  {/*######need removal testing only*/}
 
 
 
 function App() {
+    
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-
+  
   // Auto-login on page load
+  
   useEffect(() => {
     fetch("/check_session")
       .then((res) => {
@@ -35,7 +36,7 @@ function App() {
       })
       .finally(() => setIsLoading(false));
   }, []);
-
+  if (isLoading) return <div className="loader">Loading Sweet Homes...</div>;
   return (
     <div className="App">
       <Navbar user={user} setUser={setUser} />
@@ -43,7 +44,7 @@ function App() {
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<Home />} />
-          <Route path="/houses" element={<HouseGalleryWithRating />} />
+          <Route path="/houses" element={<Houses />} />
           <Route path="/houses/:id" element={<HouseDetail user={user} />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/signup" element={<Signup setUser={setUser} />} />

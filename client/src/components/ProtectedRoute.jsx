@@ -3,7 +3,11 @@ import { Navigate } from "react-router-dom";
 function ProtectedRoute({ user, adminOnly = false, children, isLoading = false }) {
   // Show loader if user state is not yet determined
   if (isLoading) {
-    return <div className="loader">Checking access...</div>;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="loader">Verifying session...</div>
+      </div>
+    );
   }
 
   // Redirect if not logged in

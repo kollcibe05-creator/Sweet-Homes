@@ -1,4 +1,4 @@
-// src/pages/MyBookings.jsx
+
 import React, { useState, useEffect } from "react";
 
 function MyBookings({ user }) {
@@ -6,9 +6,10 @@ function MyBookings({ user }) {
 
   useEffect(() => {
     if (user) {
-      fetch("/bookings")
+      fetch("/my-bookings")
         .then((r) => r.json())
         .then((data) => {
+
           // Optionally filter for the current user if backend returns all
           setBookings(data.filter(b => b.user_id === user.id));
         });
@@ -19,7 +20,7 @@ function MyBookings({ user }) {
 
   return (
     <div className="container">
-      <h2>My Trips 🏡</h2>
+      <h2>My Trips </h2>
       {bookings.length === 0 ? (
         <p>You have no bookings yet. Start exploring!</p>
       ) : (
