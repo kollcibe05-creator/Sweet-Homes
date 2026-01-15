@@ -1,35 +1,40 @@
+// src/App.jsx
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 // Components
-import Navbar from "./Components/Navbar";
-import HouseGalleryWithRating from "./Components/HouseGalleryWithRating";
-import HouseDetail from "./Components/HouseDetail";
-import Login from "./Components/Login";
-import Signup from "./Components/Signup";
-import AdminDashboard from "./Components/AdminDashboard";
-import MyBookings from "./Components/BookingForm";       // Make sure BookingForm.jsx default exports MyBookings
-import Favourites from "./Components/Favourites";       // Match the file name exactly (British spelling)
-import ProtectedRoute from "./Components/ProtectedRoute"; // Make sure default export
+import Navbar from "./components/Navbar";
+import ProtectedRoute from "./components/ProtectedRoute";
+
+// Pages
+import Home from "./pages/Home";
+import Houses from "./components/Houses";
+import HouseDetail from "./pages/HouseDetail";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Favorites from "./pages/Favorites";
+import MyBookings from "./pages/MyBookings";
+import AdminDashboard from "./pages/AdminDashboard";
+
+import "./styles/main.css";
+import "./styles/anotherstyle.css";  {/*######need removal testing only*/}
+
+
 
 function App() {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Auto-login: Check if user session exists on refresh
+  // Auto-login on page load
   useEffect(() => {
     fetch("/check_session")
       .then((res) => {
         if (res.ok) {
-          res.json().then((user) => setUser(user));
+          res.json().then((userData) => setUser(userData));
         }
       })
-      .finally(() => setIsLoading(false)); // Stop loading after fetch
+      .finally(() => setIsLoading(false));
   }, []);
-
-  if (isLoading) {
-    return <div className="loader">Loading...</div>; // Show loader while checking session
-  }
 
   return (
     <div className="App">
@@ -37,7 +42,8 @@ function App() {
       <main>
         <Routes>
           {/* Public Routes */}
-          <Route path="/" element={<HouseGalleryWithRating />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/houses" element={<HouseGalleryWithRating />} />
           <Route path="/houses/:id" element={<HouseDetail user={user} />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/signup" element={<Signup setUser={setUser} />} />
@@ -46,7 +52,7 @@ function App() {
           <Route
             path="/my-bookings"
             element={
-              <ProtectedRoute user={user} isLoading={isLoading}>
+              <ProtectedRoute user={user}>
                 <MyBookings user={user} />
               </ProtectedRoute>
             }
@@ -54,8 +60,8 @@ function App() {
           <Route
             path="/favorites"
             element={
-              <ProtectedRoute user={user} isLoading={isLoading}>
-                <Favourites user={user} />
+              <ProtectedRoute user={user}>
+                <Favorites user={user} />
               </ProtectedRoute>
             }
           />
@@ -64,11 +70,14 @@ function App() {
           <Route
             path="/admin"
             element={
-              <ProtectedRoute user={user} adminOnly={true} isLoading={isLoading}>
+              <ProtectedRoute user={user} adminOnly={true}>
                 <AdminDashboard user={user} />
               </ProtectedRoute>
             }
           />
+
+          {/* Fallback Route */}
+          <Route path="*" element={<p className="container">404 | Page Not Found</p>} />
         </Routes>
       </main>
     </div>
