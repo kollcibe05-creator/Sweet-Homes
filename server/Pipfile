@@ -12,6 +12,10 @@ flask-sqlalchemy = "*"
 faker = "*"
 sqlalchemy-serializer = "*"
 flask-restful = "*"
+honcho = "*"
+gunicorn = "*"
+psycopg2-binary = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
