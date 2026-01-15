@@ -23,6 +23,9 @@ The models incorporate serialize_rules and association_proxies to limit recursio
 - Python
 - SQL
 - Markdown
+- React
+- PostgreSQL
+- Render
 
 ## File Structure
 
