@@ -15,8 +15,8 @@ from sqlalchemy import MetaData
 app = Flask(
     __name__,
     static_url_path='',
-    static_folder='../dist',  
-    template_folder='../dist'
+    static_folder='../client/dist',  
+    template_folder='../client/dist'
 )
 app.secret_key = b'\xfew6MO\xd3\xd0\xa5xft\x0f&\x18\\j'
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URI")
@@ -35,14 +35,14 @@ bcrypt = Bcrypt(app)
 
 api = Api(app)
 CORS(app)
-# @app.route('/')
-# def index():
-#     return render_template("index.html")
+@app.route('/')
+def index():
+    return render_template("index.html")
 
-# # 2. This handles page refreshes (e.g., if someone refreshes on /login)
-# @app.errorhandler(404)
-# def not_found(e):
-#     return render_template("index.html")
-@app.route("/api/health")
-def health():
-    return {"status": "ok"}
+# 2. This handles page refreshes (e.g., if someone refreshes on /login)
+@app.errorhandler(404)
+def not_found(e):
+    return render_template("index.html")
+# @app.route("/api/health")
+# def health():
+#     return {"status": "ok"}
