@@ -1,4 +1,4 @@
-# --- FRONTEND (React, Vue, Next.js, etc.) ---
+# --- FRONTEND---
 node_modules/
 dist/
 build/
@@ -10,7 +10,7 @@ yarn-debug.log*
 yarn-error.log*
 .eslintcache
 
-# --- BACKEND (Python/Node/Go) ---
+# --- BACKEND---
 # Python virtual environments
 .venv/
 venv/
@@ -23,9 +23,7 @@ __pycache__/
 *$py.class
 
 # Node backend
-# (handled by node_modules/ above)
-
-# --- DATABASE & SECRETS (Critical!) ---
+# --- DATABASE & SECRETS---
 .env
 .env.local
 .env.*.local
