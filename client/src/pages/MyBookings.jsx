@@ -6,7 +6,7 @@ function MyBookings({ user }) {
 
   useEffect(() => {
     if (user) {
-      fetch("/bookings")
+      fetch("/my-bookings")
         .then((r) => r.json())
         .then((data) => {
           // Optionally filter for the current user if backend returns all
