@@ -8,17 +8,16 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 // Pages
 import Home from "./pages/Home";
-import Houses from "./pages/Houses";
+import Houses from "./components/Houses";
 import HouseDetail from "./pages/HouseDetail";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Favorites from "./pages/Favorites";
 import MyBookings from "./pages/MyBookings";
-import AdminDashboard from "./pages/AdminDashBoard.jsx";
+import AdminDashboard from "./pages/AdminDashboard";
 
-import "./styles/main.css";             
+import "./styles/main.css";
 import "./styles/anotherstyle.css";  {/*######need removal testing only*/}
-
 
 
 
@@ -39,13 +38,12 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Well Hello there!</h1>
       <Navbar user={user} setUser={setUser} />
       <main>
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<Home />} />
-          <Route path="/houses" element={<Houses />} />
+          <Route path="/houses" element={<HouseGalleryWithRating />} />
           <Route path="/houses/:id" element={<HouseDetail user={user} />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/signup" element={<Signup setUser={setUser} />} />
