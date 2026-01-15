@@ -27,6 +27,3 @@ sqlalchemy==2.0.45; python_version >= '3.7'
 sqlalchemy-serializer==1.6.2; python_version >= '3.10'
 typing-extensions==4.15.0; python_version >= '3.9'
 werkzeug==3.1.5; python_version >= '3.9'
-
-
-postgresql://my_database_a8uk_user:neY6nIFxps6U7qzSbzZoCMSBmsTQi0Ho@dpg-d5kjbedactks7392rp10-a.oregon-postgres.render.com/my_database_a8uk
