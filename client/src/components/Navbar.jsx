@@ -1,6 +1,6 @@
-// src/components/Navbar.jsx
+
 import { NavLink, Link, useNavigate } from "react-router-dom";
-import "./Navbar.css"; // Create this file for the styles below
+import "./Navbar.css";
 
 function Navbar({ user, setUser }) {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ function Navbar({ user, setUser }) {
 
   // Helper to style active links
   const linkStyles = ({ isActive }) => ({
-    color: isActive ? "#FF385C" : "#484848", // Airbnb Red for active
+    color: isActive ? "#FF385C" : "#484848", //Red for active
     fontWeight: isActive ? "bold" : "normal",
     borderBottom: isActive ? "2px solid #FF385C" : "none"
   });

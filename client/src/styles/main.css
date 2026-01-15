@@ -21,7 +21,7 @@ body {
   margin: 0 auto;
 }
 
-/* 2. Navigation */
+/*Navigation */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -42,7 +42,7 @@ body {
 
 .nav-links a.active-link { font-weight: bold; }
 
-/* 3. House Discovery (Gallery & Filters) */
+/*House Gallery and Filters*/
 .filter-section, .search-bar-container {
   display: flex;
   gap: 15px;
@@ -90,7 +90,7 @@ body {
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* 4. House Detail Page */
+/*House Detail Page */
 .house-detail-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -118,7 +118,7 @@ body {
   font-size: 14px;
 }
 
-/* 5. Booking & Forms */
+/*Booking & Forms */
 .booking-form-container, .form-box, .review-form-card {
   padding: 24px;
   border: 1px solid var(--border);
@@ -147,7 +147,7 @@ body {
   margin: 4px 0;
 }
 
-/* 6. Admin Panel */
+/*Admin Panel */
 .admin-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -169,7 +169,7 @@ body {
 .status-approved { color: var(--success); font-weight: bold; }
 .status-pending { color: var(--warning); font-weight: bold; }
 
-/* 7. Home / Landing Page */
+/*Home / Landing Page */
 .home {
   height: 100vh;
   background: url("/src/assets/home.jpg") center/cover no-repeat;
@@ -198,11 +198,11 @@ body {
   font-size: 1rem;
 }
 
-/* 8. Misc */
+/*Misc */
 .loader { text-align: center; margin: 50px 0; }
 
 
-/* --- Houses Gallery Styling --- */
+/*Houses Gallery Styling*/
 
 .container {
   max-width: 1280px;
@@ -245,7 +245,7 @@ h2 {
 /* Image Styling */
 .house-card img {
   width: 100%;
-  aspect-ratio: 1 / 1; /* Makes images perfect squares like Airbnb */
+  aspect-ratio: 1 / 1; /*Makes images perfect squares*/
   object-fit: cover;
   border-radius: 12px;
 }
@@ -275,20 +275,20 @@ h2 {
   font-size: 1rem;
 }
 
-/* Star Rating Position */
+/*Star Rating Position*/
 .card-info p:first-of-type {
   color: #222;
   font-weight: 500;
 }
 
-/* --- Search Filter Quick Style --- */
+/*Search Filter*/
 .search-filters {
   display: flex;
   gap: 15px;
   margin-bottom: 30px;
   padding: 15px;
   background: #f7f7f7;
-  border-radius: 40px; /* Pill shape */
+  border-radius: 40px; /* Pill shape ~ UX*/
   border: 1px solid #ddd;
   justify-content: center;
 }
