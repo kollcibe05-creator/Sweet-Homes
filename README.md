@@ -16,9 +16,13 @@ The ideological business requirements are:
 7. A `User` can have many `Booking`s. 
 _______
 The ERD model of the relationships;
-![ERD Model ~ Sweet Homes](Screenshot 2026-01-16 013412.png)
+![ERD Model ~ Sweet Homes](./Screenshot%202026-01-16%20013412.pngScreenshot 2026-01-16 013412.png)
 _______
 The models incorporate serialize_rules and association_proxies to limit recursion depth and simplify cross-model data access.
+____
+
+THE DEPLOYED LINK 👉[Deployed](https://sweet-homes.onrender.com)
+____
 ## Tech Stack
 - Python
 - SQL
@@ -29,28 +33,52 @@ The models incorporate serialize_rules and association_proxies to limit recursio
 
 ## File Structure
 
-Take a look at the directory structure:
+Take a look at the src directory structure:
 
 ```console
-    .
-├── LICENSE
+.
+├── App.jsx
+├── components
+│   ├── BookingForm.jsx
+│   ├── Navbar.css
+│   ├── Navbar.jsx
+│   ├── ProtectedRoute.jsx
+│   ├── ReviewSection.jsx
+│   └── SearchFilters.jsx
+├── main.jsx
+├── pages
+│   ├── AdminDashboard.jsx
+│   ├── Favorites.jsx
+│   ├── Home.jsx
+│   ├── HouseDetail.jsx
+│   ├── Houses.jsx
+│   ├── Login.jsx
+│   ├── MyBookings.jsx
+│   └── Signup.jsx
+└── styles
+    ├── anotherstyle.css
+    └── main.css
+    
+```
+And the backeng logic:
+
+```console
+.
 ├── Pipfile
 ├── Pipfile.lock
-├── README.md
-├── domain.png
-└── server
-    ├── app.py
-    ├── instance
-    │   └── app.db
-    ├── migrations
-    │   ├── README
-    │   ├── alembic.ini
-    │   ├── env.py
-    │   ├── script.py.mako
-    │   └── versions
-    │       └── 4e55fcdd2cde_initial_migration.py
-    ├── models.py
-    └── seed.py
+├── app.py
+├── config.py
+├── migrations
+│   ├── README
+│   ├── alembic.ini
+│   ├── env.py
+│   ├── script.py.mako
+│   └── versions
+│       └── d63345b06c4e_created_tables_again_for_postgresql.py
+├── models.py
+├── package-lock.json
+└── seed.py
+
 ```
 
 
@@ -139,8 +167,11 @@ It holds our SQL database.
 
 
 
-# Author
+# Authors
 *Collins Kibet*
+*John Ng'ang'a*
+*Josephine Anyango*
+*Elijah Mwendia*
 
 ## [License](LICENSE)
 
@@ -150,6 +181,8 @@ Copyright (c) 2025 Collins Kibet
 
 # Contact info
 * Email : kollcibe05@gmail.com
-
+* Email : josephine.anyango@student.moringaschool.com
+* Email : elijah.mwendia@student.moringaschool.com
+* Email : john.nganga@student.moringaschool.com
 
 `(**Thank you**)`
