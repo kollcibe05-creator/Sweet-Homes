@@ -1,4 +1,7 @@
 import os
+from dotenv import load_dotenv
+load_dotenv()
+
 
 from flask import Flask
 from flask_bcrypt import Bcrypt
@@ -8,7 +11,12 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    static_url_path='',
+    static_folder='../client/dist',  
+    template_folder='../client/dist'
+)
 app.secret_key = b'\xfew6MO\xd3\xd0\xa5xft\x0f&\x18\\j'
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URI")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
