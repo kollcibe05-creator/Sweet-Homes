@@ -45,4 +45,4 @@ def not_found(e):
     return render_template("index.html")
 # @app.route("/api/health")
 # def health():
-#     return {"status": "ok"}
+#     return {"status": "ok"}  cd server && flask db upgrade
