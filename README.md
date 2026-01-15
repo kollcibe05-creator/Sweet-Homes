@@ -138,7 +138,7 @@ $ npm install --prefix client
 ```
 
 ## Functionality
-### Frontend
+### Backend
 # models.py
 Our models import from `db.Model` and `SerializerMixin`.
 The have similar constructors such as:
@@ -175,6 +175,13 @@ It holds our SQL database. In our case, we use PostgreSQL and therfore the db is
 # config.py
 It holds our configurations involving our app, DATABASE_URI and many other.
 
+### Frontend
+The frontend is heavily packed with files but the basic functionality is as follows:
+
+1. `src/` : holds all the components and styling files.
+2. `components/` : holds all the reusable components.
+3. `pages` : Contains the main Components that take in the reusable components for render.
+4. `styles`: Holds the css files.
 
 
 
