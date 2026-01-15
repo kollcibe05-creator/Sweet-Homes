@@ -1,8 +1,8 @@
-"""initial migrate
+"""created tables again for postgresql
 
-Revision ID: 52485d35edf0
+Revision ID: d63345b06c4e
 Revises: 
-Create Date: 2026-01-14 15:55:23.002899
+Create Date: 2026-01-15 22:11:59.497254
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '52485d35edf0'
+revision = 'd63345b06c4e'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -69,7 +69,7 @@ def upgrade():
     sa.Column('house_id', sa.Integer(), nullable=True),
     sa.Column('rating', sa.Integer(), nullable=True),
     sa.Column('comment', sa.Text(), nullable=True),
-    sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
+    sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.ForeignKeyConstraint(['house_id'], ['houses.id'], name=op.f('fk_reviews_house_id_houses')),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], name=op.f('fk_reviews_user_id_users')),
     sa.PrimaryKeyConstraint('id')
