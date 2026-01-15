@@ -138,6 +138,7 @@ $ npm install --prefix client
 ```
 
 ## Functionality
+### Frontend
 # models.py
 Our models import from `db.Model` and `SerializerMixin`.
 The have similar constructors such as:
