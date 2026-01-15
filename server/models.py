@@ -14,7 +14,7 @@ class Role(db.Model, SerializerMixin):
 
     users = db.relationship("User", back_populates="role")
 
-
+    serialize_rules = ('-users.role',)
 
 class User(db.Model, SerializerMixin):
     __tablename__ = "users"
@@ -30,7 +30,7 @@ class User(db.Model, SerializerMixin):
     reviews = db.relationship("Review", back_populates="user", cascade="all, delete")
     favorites = db.relationship("Favorite", back_populates="user", cascade="all, delete")
 
-    serialize_rules = ("-_password_hash", "-bookings", "-reviews", "-favorites")
+    serialize_rules = ("-_password_hash", "-bookings", "-reviews", "-favorites", "-role.users")
 
     @hybrid_property
     def password_hash(self):
@@ -68,7 +68,7 @@ class House(db.Model, SerializerMixin):
     reviews = db.relationship("Review", back_populates="house", cascade="all, delete")
     favorites = db.relationship("Favorite", back_populates="house", cascade="all, delete")
 
-
+    serialize_rules = ('-bookings', '-reviews.house', '-favorites', "-reviews.user.reviews", "-reviews.user.bookings", "-reviews.user.favorites", )
 
 class Booking(db.Model, SerializerMixin):
     __tablename__ = "bookings"
@@ -82,7 +82,7 @@ class Booking(db.Model, SerializerMixin):
 
     user = db.relationship("User", back_populates="bookings")
     house = db.relationship("House", back_populates="bookings")
-
+    serialize_rules = ('-user.bookings', '-house.bookings', "-user.reviews", "-house.reviews",)
 
 
 class Review(db.Model, SerializerMixin):
@@ -97,6 +97,9 @@ class Review(db.Model, SerializerMixin):
 
     user = db.relationship("User", back_populates="reviews")
     house = db.relationship("House", back_populates="reviews")
+
+    serialize_rules = ('-user.reviews',  "-user.bookings", "-user.favorites", "-house.reviews", "-house.bookings", "-house.favorites", )
+
 
     @validates("rating")
     def validate_rating(self, key, value):
@@ -115,3 +118,5 @@ class Favorite(db.Model, SerializerMixin):
 
     user = db.relationship("User", back_populates="favorites")
     house = db.relationship("House", back_populates="favorites")
+
+    serialize_rules = ('-user.favorites', '-house.favorites', "-user.reviews", "-house.reviews",)

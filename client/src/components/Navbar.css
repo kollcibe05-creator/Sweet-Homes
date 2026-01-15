@@ -1,0 +1,44 @@
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  border-bottom: 1px solid #ebebeb;
+  background-color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.brand-logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #FF385C;
+  text-decoration: none;
+}
+
+.logout-btn {
+  background: #f7f7f7;
+  border: 1px solid #222;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.logout-btn:hover {
+  background: #222;
+  color: white;
+}
+
+.admin-pill {
+  background-color: #f1f1f1;
+  padding: 5px 12px;
+  border-radius: 20px;
+}
