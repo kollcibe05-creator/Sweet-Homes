@@ -21,7 +21,7 @@ _______
 The models incorporate serialize_rules and association_proxies to limit recursion depth and simplify cross-model data access.
 ____
 
-THE DEPLOYED LINK 👉[Deployed](https://sweet-homes.onrender.com)
+THE DEPLOYED LINK 👉[The site is live and alive!](https://sweet-homes.onrender.com)
 ____
 ## Tech Stack
 - Python
@@ -146,7 +146,7 @@ The have similar constructors such as:
 2. *__tablename__*: Specifies the table in the database that the objects will be mapped to.
 3. *serialize_rules*: It states the fields to be excluded to prevent recursion depth.
 4. *association_proxy*: It simplifies access to the cross-model fields and data. 
-5. @validates : a decorator that ensures that rating is between 1 and 5.
+5. @validates : a decorator that ensures that the constraints set are valid.
 
 The models are:
 -  Role
@@ -187,10 +187,10 @@ The frontend is heavily packed with files but the basic functionality is as foll
 
 
 # Authors
-*Collins Kibet*
-*John Ng'ang'a*
-*Josephine Anyango*
-*Elijah Mwendia*
+- *Collins Kibet*
+- *John Ng'ang'a*
+- *Josephine Anyango*
+- *Elijah Mwendia*
 
 ## [License](LICENSE)
 
