@@ -55,7 +55,7 @@ class Login(Resource):
 
 
 class Logout(Resource):
-    def delete(self):  # Must match the 'DELETE' method in Navbar.jsx
+    def delete(self):  
         session['user_id'] = None
         return {}, 204
 
