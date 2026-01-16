@@ -59,7 +59,7 @@ function Houses() {
                   </p>
 
                   <p>
-                    <strong>${house.price_per_night}</strong> / night
+                    <strong>Ksh. {house.price_per_night}</strong> / night
                   </p>
                 </div>
               </Link>

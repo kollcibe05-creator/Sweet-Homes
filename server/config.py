@@ -39,10 +39,6 @@ CORS(app)
 def index():
     return render_template("index.html")
 
-# 2. This handles page refreshes (e.g., if someone refreshes on /login)
 @app.errorhandler(404)
 def not_found(e):
     return render_template("index.html")
-# @app.route("/api/health")
-# def health():
-#     return {"status": "ok"}  cd server && flask db upgrade
