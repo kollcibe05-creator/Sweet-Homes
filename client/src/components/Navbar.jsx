@@ -21,7 +21,7 @@ function Navbar({ user, setUser }) {
 
   return (
     <nav className="navbar-container">
-      <Link to="/" className="brand-logo">🏡 Sweet Homes</Link>
+      <Link to="/" className="brand-logo">🏘️ Sweet Homes</Link>
 
       <div className="nav-links">
         <NavLink to="/houses" style={linkStyles}>Explore</NavLink>
