@@ -110,7 +110,6 @@ class HouseList(Resource):
 class HouseByID(Resource):
     def get(self, id):
         house = House.query.get_or_404(id)
-        # Returns the house with its reviews for the Detail page
         return house.to_dict(), 200
     @admin_required
     def patch(self, id):
