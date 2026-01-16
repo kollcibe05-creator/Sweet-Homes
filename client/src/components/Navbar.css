@@ -21,6 +21,27 @@
   font-weight: 800;
   color: #FF385C;
   text-decoration: none;
+  transition: opacity 0.2s ease;   /*edited*/
+}
+
+
+.brand-logo:hover {
+  opacity: 0.8; /* Subtle fade on hover */
+}
+
+
+/* --- Interactive Nav Links --- */
+.nav-links a {
+  text-decoration: none;
+  color: #222;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-links a:hover {
+  background-color: #f7f7f7; /* Soft gray highlight */
 }
 
 .logout-btn {
@@ -30,15 +51,37 @@
   border-radius: 8px;
   cursor: pointer;
   transition: 0.2s;
+  /*added*/
+  font-weight: 600;
+  transition: all 0.2s ease; /* Transition all properties */
 }
 
 .logout-btn:hover {
   background: #222;
   color: white;
+  /*added*/
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds depth */
+}
+
+
+/*added*/
+.logout-btn:active {
+  transform: scale(0.95); /* Shrink effect on click */
 }
 
 .admin-pill {
   background-color: #f1f1f1;
   padding: 5px 12px;
   border-radius: 20px;
+
+  /*added*/
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+  cursor: default;
+}
+
+
+/*added*/
+.admin-pill:hover {
+  background-color: #e5e5e5;
 }
