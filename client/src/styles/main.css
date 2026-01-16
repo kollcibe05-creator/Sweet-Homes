@@ -623,3 +623,10 @@ h2 {
   color: white;
   border-color: #e03131;
 }
+h1{
+  color: #2ecc71;
+}
+p{
+  font-style: italic;
+  font-family: Georgia, 'Times New Roman', Times, serif
+}
