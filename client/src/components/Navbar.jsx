@@ -12,9 +12,9 @@ function Navbar({ user, setUser }) {
     });
   }
 
-  // Helper to style active links
+  //  active links styling
   const linkStyles = ({ isActive }) => ({
-    color: isActive ? "#FF385C" : "#484848", //Red for active
+    color: isActive ? "#FF385C" : "#484848",
     fontWeight: isActive ? "bold" : "normal",
     borderBottom: isActive ? "2px solid #FF385C" : "none"
   });

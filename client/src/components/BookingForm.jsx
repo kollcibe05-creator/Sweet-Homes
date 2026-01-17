@@ -88,7 +88,7 @@ function BookingForm({ houseId, pricePerNight, user }) {
         <button type="submit">Reserve</button>
       </form>
 
-      <small>You won’t be charged yet</small>
+      <small>You won't be charged yet</small>
     </div>
   );
 }
